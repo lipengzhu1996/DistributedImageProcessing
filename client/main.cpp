@@ -24,6 +24,8 @@ using namespace cv;
 #define IMG_CHAN 3                      //image channels
 #define IMG_BUF_SIZE IMG_ROW*IMG_COL*IMG_CHAN
 
+#define ID 1
+
 int main()
 {
 /*****declarations for arguments used in socket communication*****/
