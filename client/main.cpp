@@ -67,8 +67,9 @@ int main()
 
 /*********************************************************/
 
-        img_buf = new uchar[IMG_BUF_SIZE];      //allocate exact memory for the image buffer
-
+        img_buf = new uchar[IMG_BUF_SIZE + 1];      //allocate exact memory for the image buffer
+		img_buf[0] = ID
+		
         while(1)        //information sending loop
         {
                 if((len=recv(server_fd,buf,BUFSIZE,0))>0)
@@ -82,9 +83,8 @@ int main()
 
                         frame = imread("/home/pi/zhulipeng/TCP_test/multi_client/lena.jpg",IMREAD_COLOR);
                         resize(frame,img,Size(IMG_COL,IMG_ROW),0,0);
-                        img_buf = img.data;
-
-                        len=send(server_fd,&img_buf[0],IMG_BUF_SIZE,0);         //send the image array to server
+						memcpy(&img_buf[1], img.data, IMG_BUF_SIZE)                    
+                        len=send(server_fd,&img_buf[0],IMG_BUF_SIZE + 1,0);         //send the image array to server 
                         if(len < IMG_BUF_SIZE)          //error detection
                                 cout<<"Trans Error!"<<endl;
                 }
