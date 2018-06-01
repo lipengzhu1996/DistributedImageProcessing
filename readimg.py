@@ -2,12 +2,12 @@ import cv2 as cv
 import numpy as np
 import os
 
-rootdir ='D:/JPEGImages'
-file = open('D:/JPEGImages/data.txt','w')
+rootdir ='/home/hadoop/workspace/imgs'
+file = open('/home/hadoop/workspace/data.txt','w')
 list = os.listdir(rootdir)
 
 
-for i in range(0,len(list)-1):
+for i in range(0,len(list)):
     path = os.path.join(rootdir,list[i])
     if os.path.isfile(path):
         img = cv.imread(path,cv.IMREAD_GRAYSCALE)
